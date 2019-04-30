@@ -132,6 +132,42 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:510203488830:android:859d28c276014811",
+        "android_client_info": {
+          "package_name": "com.example.wait_please"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510203488830-6897lf5qfqinrt5k05meo17he9sh25ri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDowBkxnNqiTmdvuVsr4l6-wuS6ydDg2UI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510203488830-6897lf5qfqinrt5k05meo17he9sh25ri.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "510203488830-ev9dab4c5lkncncq7gv1lhd4itv8pr78.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "JeEonPark.EatEat"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:510203488830:android:48b0224d0447170a",
         "android_client_info": {
           "package_name": "com.waitwait"
