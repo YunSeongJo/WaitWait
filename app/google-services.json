@@ -8,6 +8,42 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:510203488830:android:4983286a91967fea",
+        "android_client_info": {
+          "package_name": "com.example.YunaFile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510203488830-6897lf5qfqinrt5k05meo17he9sh25ri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDowBkxnNqiTmdvuVsr4l6-wuS6ydDg2UI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510203488830-6897lf5qfqinrt5k05meo17he9sh25ri.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "510203488830-ev9dab4c5lkncncq7gv1lhd4itv8pr78.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "JeEonPark.EatEat"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:510203488830:android:84e0cbc78e884a02",
         "android_client_info": {
           "package_name": "com.example.eateatyummy"
@@ -52,89 +88,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:510203488830:android:a97dd058d3de3a6a",
+        "mobilesdk_app_id": "1:510203488830:android:85722fe51a3fbe1f",
         "android_client_info": {
-          "package_name": "com.example.examfile"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "510203488830-k1buq46cd23fcc4s7670in3nqaneevvc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.examfile",
-            "certificate_hash": "177b3677fa297b25ff04691fd5882dd0b6271965"
-          }
-        },
-        {
-          "client_id": "510203488830-6897lf5qfqinrt5k05meo17he9sh25ri.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDowBkxnNqiTmdvuVsr4l6-wuS6ydDg2UI"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "510203488830-6897lf5qfqinrt5k05meo17he9sh25ri.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "510203488830-ev9dab4c5lkncncq7gv1lhd4itv8pr78.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "JeEonPark.EatEat"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:510203488830:android:fbae50004a43f440",
-        "android_client_info": {
-          "package_name": "com.example.myfile"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "510203488830-6897lf5qfqinrt5k05meo17he9sh25ri.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDowBkxnNqiTmdvuVsr4l6-wuS6ydDg2UI"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "510203488830-6897lf5qfqinrt5k05meo17he9sh25ri.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "510203488830-ev9dab4c5lkncncq7gv1lhd4itv8pr78.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "JeEonPark.EatEat"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:510203488830:android:859d28c276014811",
-        "android_client_info": {
-          "package_name": "com.example.wait_please"
+          "package_name": "com.example.sumin_wait"
         }
       },
       "oauth_client": [
@@ -174,6 +130,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "510203488830-asbsganpkuskdueobv9dk61ahqlmvqum.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.waitwait",
+            "certificate_hash": "60ce0cde239d30e4ecfb1d74736f5ed959f22e1a"
+          }
+        },
         {
           "client_id": "510203488830-6897lf5qfqinrt5k05meo17he9sh25ri.apps.googleusercontent.com",
           "client_type": 3
