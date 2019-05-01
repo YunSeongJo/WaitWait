@@ -4,51 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <EditText
-        android:id="@+id/idword"
+        android:id="@+id/idWord"
         android:layout_width="250dp"
         android:layout_height="53dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Email:"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="198dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
 
     <EditText
-        android:id="@+id/pwword"
+        android:id="@+id/pwWord"
         android:layout_width="250dp"
         android:layout_height="53dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="PassWord:"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="281dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="115dp"
         android:layout_height="64dp"
+        android:onClick="signIn"
         android:text="로그인"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="376dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
     <Button
-        android:id="@+id/signupbutton"
+        android:id="@+id/signUpButton"
         android:layout_width="117dp"
         android:layout_height="58dp"
         android:text="신규 회원가입"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="483dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.73" />
 
     <Button
-        android:id="@+id/Forgetpw"
+        android:id="@+id/forgetPw"
         android:layout_width="164dp"
         android:layout_height="58dp"
         android:text="패스워드가 기억나지\n 않습니까?"
-        tools:layout_editor_absoluteX="211dp"
-        tools:layout_editor_absoluteY="483dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
 
     <TextView
         android:id="@+id/textView"
@@ -56,6 +72,9 @@
         android:layout_height="51dp"
         android:text="회원가입"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="96dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13999999" />
 </android.support.constraint.ConstraintLayout>
