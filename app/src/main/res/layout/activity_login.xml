@@ -8,7 +8,7 @@
 
     <EditText
         android:id="@+id/idWord"
-        android:layout_width="350"
+        android:layout_width="350dp"
         android:layout_height="53dp"
         android:ems="10"
         android:hint="아이디 또는 이메일"
@@ -21,7 +21,7 @@
 
     <EditText
         android:id="@+id/pwWord"
-        android:layout_width="350"
+        android:layout_width="350dp"
         android:layout_height="53dp"
         android:ems="10"
         android:hint="비밀번호"
@@ -34,8 +34,8 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="350"
-        android:layout_height="60"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
         android:onClick="signIn"
         android:text="로그인"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,7 +68,7 @@
         android:textColor="#969696"
         android:textColorHint="#969696"
         android:textIsSelectable="false"
-        android:textSize="10"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -95,7 +95,7 @@
         android:gravity="center"
         android:inputType="textPersonName"
         android:text="회원가입"
-        android:textSize="14"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintLeft_toLeftOf="parent"
