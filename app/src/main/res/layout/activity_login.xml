@@ -8,11 +8,11 @@
 
     <EditText
         android:id="@+id/idWord"
-        android:layout_width="250dp"
+        android:layout_width="350"
         android:layout_height="53dp"
         android:ems="10"
+        android:hint="아이디 또는 이메일"
         android:inputType="textPersonName"
-        android:hint="Enter Email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -21,11 +21,11 @@
 
     <EditText
         android:id="@+id/pwWord"
-        android:layout_width="250dp"
+        android:layout_width="350"
         android:layout_height="53dp"
         android:ems="10"
+        android:hint="비밀번호"
         android:inputType="textPersonName"
-        android:hint="Enter Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -34,8 +34,8 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="115dp"
-        android:layout_height="64dp"
+        android:layout_width="350"
+        android:layout_height="60"
         android:onClick="signIn"
         android:text="로그인"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,28 +43,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
-
-    <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="117dp"
-        android:layout_height="58dp"
-        android:text="신규 회원가입"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73" />
-
-    <Button
-        android:id="@+id/forgetPw"
-        android:layout_width="164dp"
-        android:layout_height="58dp"
-        android:text="패스워드가 기억나지\n 않습니까?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
 
     <TextView
         android:id="@+id/textView"
