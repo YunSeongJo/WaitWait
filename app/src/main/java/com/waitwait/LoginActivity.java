@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void loginUser(String email, String password) {
+    private void loginUser(String email, String password) {//로그인 버튼 눌렀을 때 실행하는 객체
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
