@@ -40,8 +40,12 @@
         android:id="@+id/loginButton"
         android:layout_width="350dp"
         android:layout_height="60dp"
+        android:background="@drawable/login_button_background"
         android:onClick="signIn"
         android:text="로그인"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        style="?android:attr/borderlessButtonStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -96,6 +100,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.58000004" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="187dp"
+        android:layout_height="73dp"
+        app:srcCompat="@drawable/mainlogo"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="85dp" />
 
 
     <!--이거 바뀌나요?-->
