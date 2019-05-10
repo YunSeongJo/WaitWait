@@ -9,7 +9,7 @@
     </style>
 
     <style name = "StartTheme" parent="@android:style/Theme.Light.NoTitleBar">
-        <item name="android:windowBackground">@drawable/startImage</item>
+        <item name="android:windowBackground">@drawable/startimage</item>
     </style>
 
 </resources>
