@@ -1,2 +1,22 @@
 파일 구조
 
+*주의! 액티비티를 생성하거나 xml을 생설할 때, 무조건적으로 기록해주세요.
+
+WaitWait Project
+
+    - StartActivity.java [앱을 실행시켰을 때 초기 앱 실행화면]
+        ㄴ activity_start.xml
+
+
+    - LoginActivity.java [StartActivity.java 다음에 나타나는 액티비티, 로그인 화면]
+        ㄴ activity_login.xml
+            ㄴ login_button_background.xml (res/drawable) [버튼 디자인]
+
+
+    - SignUpActivity [LoginActivity 에서 회원가입 버튼 눌렀을 시 나타나는 액티비티]
+        ㄴ activity_sign_up.xml
+            ㄴ sign_up_start_button_background.xml (res/drawable) [버튼 디자인]
+
+
+    - MainActivity [로그인 후 나타나는 앱의 메인 페이지]
+        ㄴ activity_main.xml
