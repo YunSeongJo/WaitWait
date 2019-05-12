@@ -93,5 +93,12 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //회원가입 버튼 눌렀을 시
+    public void onClickToSignUpActivity(View view){
+        Intent intent = new Intent(getApplicationContext(), SignUpActivity_Main.class);
+        startActivity(intent);
+    }
+
+
 
 }
