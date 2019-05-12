@@ -1,6 +1,7 @@
 package com.waitwait;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -87,7 +88,10 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
     }
-
+    public void tofindidpwActivity(View view){
+        Intent intent = new Intent(getApplicationContext(), FindIdPwActivity.class);
+        startActivity(intent);
+    }
 
 
 }
