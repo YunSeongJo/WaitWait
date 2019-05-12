@@ -88,7 +88,9 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
     }
-    public void tofindidpwActivity(View view){
+
+    //idpw 찾기 눌렀을 시
+    public void onClickToFindIdPwActivity(View view){
         Intent intent = new Intent(getApplicationContext(), FindIdPwActivity.class);
         startActivity(intent);
     }

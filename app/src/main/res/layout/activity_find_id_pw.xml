@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".FindIdPwActivity">
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/findidpwvbuttoin"
-        android:layout_width="399dp"
-        android:layout_height="78dp"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="6dp" />
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="78dp"
+        tools:layout_editor_absoluteY="355dp" />
 </android.support.constraint.ConstraintLayout>

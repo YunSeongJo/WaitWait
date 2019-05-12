@@ -98,7 +98,7 @@
         android:textColorHint="#969696"
         android:textIsSelectable="false"
         android:textSize="10sp"
-        android:onClick="tofindidpwActivity"
+        android:onClick="onClickToFindIdPwActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
