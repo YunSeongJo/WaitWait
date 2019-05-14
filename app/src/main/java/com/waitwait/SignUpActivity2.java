@@ -97,11 +97,14 @@ public class SignUpActivity2 extends AppCompatActivity {
         if(isValidEmail() == 2 && isValidPasswd() == 2 && isPasswdSame() == 2 && isName() == 2 && isPhone() == 2) {
             createUser(email, password);
 
-            Map<String, Object> city = new HashMap<>();
-            city.put("name", "Los Angeles");
+            Map<String, Object> user = new HashMap<>();
+            user.put("Email", email);
+            user.put("Name", name);
+            user.put("Phone", phone);
 
-            db.collection("UserInformation").document("test")
-                    .set(city)
+
+            db.collection("UserInformation").document(email)
+                    .set(user)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
