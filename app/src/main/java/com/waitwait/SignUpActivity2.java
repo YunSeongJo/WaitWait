@@ -3,6 +3,7 @@ package com.waitwait;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,9 +11,16 @@ import android.widget.Toast;
 import android.view.View;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.core.Tag;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.WriteBatch;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +45,10 @@ public class SignUpActivity2 extends AppCompatActivity {
 
     private TextView errorMsg;
 
+    private FirebaseFirestore db;
+
+    private DocumentReference user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +62,9 @@ public class SignUpActivity2 extends AppCompatActivity {
         editTextName = findViewById(R.id.nameWord);
         editTextPhone = findViewById(R.id.phoneWord);
         errorMsg = findViewById(R.id.errorMessage);
-        Map<String, Object> user = new HashMap<>();
+
+        db = FirebaseFirestore.getInstance();
+
     }
 
 
@@ -83,6 +97,20 @@ public class SignUpActivity2 extends AppCompatActivity {
         if(isValidEmail() == 2 && isValidPasswd() == 2 && isPasswdSame() == 2 && isName() == 2 && isPhone() == 2) {
             createUser(email, password);
 
+            Map<String, Object> city = new HashMap<>();
+            city.put("name", "Los Angeles");
+
+            db.collection("UserInformation").document("test")
+                    .set(city)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(SignUpActivity2.this, "Success", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+
         } else if(isValidEmail() == 0) {
             //이메일 공백
             errorMsg.setText("이메일을 입력해주세요.");
@@ -103,7 +131,7 @@ public class SignUpActivity2 extends AppCompatActivity {
             errorMsg.setText("이메일 형식을 확인해주세요.");
         } else if (isValidPasswd() == 1){
             //비밀번호 형식 불일치
-            errorMsg.setText("비밀번호 형식을 확인해주세요. (대소문자, 숫자, 특수문자, 6~16자)");
+            errorMsg.setText("비밀번호 형식을 확인해주세요.");
         } else if (isPasswdSame() == 1){
             //비밀번호 확인 불일치
             errorMsg.setText("비밀번호가 일치하지 않습니다.");
