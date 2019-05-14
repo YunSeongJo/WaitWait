@@ -38,5 +38,8 @@ dependencies {
             { exclude group: 'com.android.support' }
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
     implementation 'android.arch.navigation:navigation-ui:1.0.0'
+    implementation ('com.google.firebase:firebase-firestore:15.0.0')
+            { exclude group: 'com.android.support' }
+
 }
 apply plugin: 'com.google.gms.google-services'

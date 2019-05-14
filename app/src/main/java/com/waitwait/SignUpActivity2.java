@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class SignUpActivity2 extends AppCompatActivity {
@@ -48,6 +50,7 @@ public class SignUpActivity2 extends AppCompatActivity {
         editTextName = findViewById(R.id.nameWord);
         editTextPhone = findViewById(R.id.phoneWord);
         errorMsg = findViewById(R.id.errorMessage);
+        Map<String, Object> user = new HashMap<>();
     }
 
 
@@ -79,6 +82,7 @@ public class SignUpActivity2 extends AppCompatActivity {
 
         if(isValidEmail() == 2 && isValidPasswd() == 2 && isPasswdSame() == 2 && isName() == 2 && isPhone() == 2) {
             createUser(email, password);
+
         } else if(isValidEmail() == 0) {
             //이메일 공백
             errorMsg.setText("이메일을 입력해주세요.");
