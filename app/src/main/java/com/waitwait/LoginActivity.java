@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.regex.Pattern;
+
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
@@ -56,6 +58,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+
+    // 비밀번호 정규식
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^[a-zA-Z0-9!@.#$%^&*?_~]{4,16}$");
+
     //로그인 유효성 검사
     public void signIn(View view) {
         email = editTextEmail.getText().toString();
@@ -83,6 +89,9 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isValidPasswd() {
         if (password.isEmpty()) {
             // 비밀번호 공백
+            return false;
+        } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
+            // 비밀번호 형식 불일치
             return false;
         } else {
             return true;
