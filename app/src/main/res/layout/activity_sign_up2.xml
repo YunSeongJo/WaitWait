@@ -73,6 +73,7 @@
         android:layout_height="53dp"
         android:ems="10"
         android:hint="010XXXXXXXX"
+        android:maxLength="11"
         android:inputType="textEmailAddress"
         android:textColorHighlight="#00000000"
         android:textColorLink="#00000000"
