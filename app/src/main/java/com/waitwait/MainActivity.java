@@ -41,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+
+
+
+
+
+    //더미------------------
     public void onClickToLoginActivity(View view){
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);

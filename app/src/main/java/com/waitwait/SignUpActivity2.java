@@ -1,5 +1,7 @@
 package com.waitwait;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -65,16 +67,33 @@ public class SignUpActivity2 extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
+        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+
     }
 
 
-    private void createUser(String email, String password) {
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+    private void createUser(String email1, String password) {
+        firebaseAuth.createUserWithEmailAndPassword(email1, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // 회원가입 성공
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("Email", email);
+                            user.put("Name", name);
+                            user.put("Phone", phone);
+
+
+                            db.collection("UserInformation").document(email)
+                                    .set(user)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Toast.makeText(SignUpActivity2.this, "Success", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
                             Toast.makeText(SignUpActivity2.this, "성공", Toast.LENGTH_SHORT).show();
                         } else {
                             // 회원가입 실패
@@ -96,21 +115,6 @@ public class SignUpActivity2 extends AppCompatActivity {
 
         if(isValidEmail() == 2 && isValidPasswd() == 2 && isPasswdSame() == 2 && isName() == 2 && isPhone() == 2) {
             createUser(email, password);
-
-            Map<String, Object> user = new HashMap<>();
-            user.put("Email", email);
-            user.put("Name", name);
-            user.put("Phone", phone);
-
-
-            db.collection("UserInformation").document(email)
-                    .set(user)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(SignUpActivity2.this, "Success", Toast.LENGTH_SHORT).show();
-                        }
-                    });
 
 
 
