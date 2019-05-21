@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser(String email, String password) {//로그인 버튼 눌렀을 때 실행하는 객체
+        errorMsg.setText("로그인 중..");
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -55,13 +56,17 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                         } else {
                             // 로그인 실패
-                            Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                            errorMsg.setText("아이디 또는 비밀번호를 확인해주세요.");
                         }
                     }
                 });
     }
 
-    private void signInButton(View view) {
+    public void signInButton(View view) {
+
+
+        email = editTextEmail.getText().toString();
+        password = editTextPassword.getText().toString();
 
         if (isValidEmail() == 2 && isValidPasswd() == 2) {
             loginUser(email, password);
@@ -87,15 +92,7 @@ public class LoginActivity extends AppCompatActivity {
     // 비밀번호 정규식
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^[a-zA-Z0-9!@.#$%^&*?_~]{6,16}$");
 
-    //로그인 유효성 검사
-    public void signIn(View view) {
-        email = editTextEmail.getText().toString();
-        password = editTextPassword.getText().toString();
 
-        if(isValidEmail()==2 && isValidPasswd()==2) {
-            loginUser(email, password);
-        }
-    }
 
     //이메일 유효성 검사
     private int isValidEmail() {
