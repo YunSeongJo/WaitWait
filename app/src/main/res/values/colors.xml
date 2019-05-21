@@ -5,4 +5,5 @@
     <color name="colorAccent">#969696</color>
     <color name="cursorColor">#f7cac9</color>
     <color name="nomalColor">#f7cac9</color>
+    <color name="testColor">#f7cac9</color>
 </resources>
