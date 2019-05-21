@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     private String email = "";
     private String password = "";
 
+    private TextView errorMsg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
         editTextEmail = findViewById(R.id.idWord);
         editTextPassword = findViewById(R.id.pwWord);
+        errorMsg = findViewById(R.id.errorMessage);
 
     }
 
@@ -57,44 +61,67 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    private void signInButton(View view) {
+
+        if (isValidEmail() == 2 && isValidPasswd() == 2) {
+            loginUser(email, password);
+
+
+        } else if (isValidEmail() == 0) {
+            //이메일 공백
+            errorMsg.setText("이메일을 입력해주세요.");
+        } else if (isValidPasswd() == 0) {
+            //비밀번호 공백
+            errorMsg.setText("비밀번호를 입력해주세요.");
+        } else if (isValidEmail() == 1) {
+            //이메일 형식 불일치
+            errorMsg.setText("이메일 형식을 확인해주세요.");
+        } else if (isValidPasswd() == 1) {
+            //비밀번호 형식 불일치
+            errorMsg.setText("비밀번호 형식을 확인해주세요.");
+        }
+    }
+
 
 
     // 비밀번호 정규식
-    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^[a-zA-Z0-9!@.#$%^&*?_~]{4,16}$");
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^[a-zA-Z0-9!@.#$%^&*?_~]{6,16}$");
 
     //로그인 유효성 검사
     public void signIn(View view) {
         email = editTextEmail.getText().toString();
         password = editTextPassword.getText().toString();
 
-        if(isValidEmail() && isValidPasswd()) {
+        if(isValidEmail()==2 && isValidPasswd()==2) {
             loginUser(email, password);
         }
     }
 
     //이메일 유효성 검사
-    private boolean isValidEmail() {
+    private int isValidEmail() {
         if (email.isEmpty()) {
             // 이메일 공백
-            return false;
+            return 0;
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             // 이메일 형식 불일치
-            return false;
+            return 1;
         } else {
-            return true;
+            // 성공
+            return 2;
         }
     }
 
     // 비밀번호 유효성 검사
-    private boolean isValidPasswd() {
+    private int isValidPasswd() {
         if (password.isEmpty()) {
             // 비밀번호 공백
-            return false;
+            return 0;
         } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
             // 비밀번호 형식 불일치
-            return false;
+            return 1;
         } else {
-            return true;
+            // 성공
+            return 2;
         }
     }
 
