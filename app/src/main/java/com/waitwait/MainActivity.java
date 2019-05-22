@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+
+
 public class MainActivity extends AppCompatActivity {
 
     // FrameLayout에 각 메뉴의 Fragment를 바꿔 줌
@@ -21,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     //private Menu3Fragment menu3Fragment = new Menu3Fragment();
 
     FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+
+
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -62,5 +67,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
     }
+
+
 
 }
