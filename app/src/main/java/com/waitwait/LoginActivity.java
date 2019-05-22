@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void loginUser(String email, String password) {//로그인 버튼 눌렀을 때 실행하는 객체
+    private void loginUser(final String email, String password) {//로그인 버튼 눌렀을 때 실행하는 객체
         errorMsg.setText("로그인 중..");
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // 로그인 성공
                             Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                            LoginedUserInformation.email=editTextEmail.getText().toString();
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
                             finish();

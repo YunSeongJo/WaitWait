@@ -49,7 +49,6 @@ public class SignUpActivity2 extends AppCompatActivity {
 
     private FirebaseFirestore db;
 
-    private DocumentReference user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
