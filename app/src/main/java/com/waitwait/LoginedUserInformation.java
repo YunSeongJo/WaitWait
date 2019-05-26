@@ -6,6 +6,8 @@ public class LoginedUserInformation {
     public static String WaitingRestaurant = "none";
     public static int WaitingNumber = 0;
 
+    public static String QRcodeCaptured = "";
+
     public String getEmail(){
         return email;
     }

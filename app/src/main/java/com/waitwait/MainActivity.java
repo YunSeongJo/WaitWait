@@ -73,15 +73,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-    //더미------------------
-    public void onClickToLoginActivity(View view){
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+    public void onClickToQRActivityMain(View view){
+        Intent intent = new Intent(getApplicationContext(), QRActivity.class);
         startActivity(intent);
     }
-
 
 
 }

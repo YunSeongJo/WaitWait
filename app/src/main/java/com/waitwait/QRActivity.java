@@ -25,6 +25,7 @@ public class QRActivity extends AppCompatActivity {
 
     //qr code scanner object
     private IntentIntegrator qrScan;
+    private LoginedUserInformation LUI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +37,16 @@ public class QRActivity extends AppCompatActivity {
         textViewName = (TextView) findViewById(R.id.textViewName);
         textViewAddress = (TextView) findViewById(R.id.textViewAddress);
         textViewResult = (TextView)  findViewById(R.id.textViewResult);
+        LUI = new LoginedUserInformation();
 
         //intializing scan object
         qrScan = new IntentIntegrator(this);
 
-        //button onClick
-        buttonScan.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //scan option
-                qrScan.setPrompt("Scanning...");
-                //qrScan.setOrientationLocked(false);
-                qrScan.initiateScan();
-            }
-        });
+        //scan option
+        qrScan.setPrompt("Scanning...");
+        //qrScan.setOrientationLocked(false);
+        qrScan.initiateScan();
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -57,19 +55,26 @@ public class QRActivity extends AppCompatActivity {
             //qrcode 가 없으면
             if (result.getContents() == null) {
                 Toast.makeText(QRActivity.this, "취소!", Toast.LENGTH_SHORT).show();
+                finish();
             } else {
                 //qrcode 결과가 있으면
                 Toast.makeText(QRActivity.this, "스캔완료!", Toast.LENGTH_SHORT).show();
-                try {
-                    //data를 json으로 변환
-                    JSONObject obj = new JSONObject(result.getContents());
-                    textViewName.setText(obj.getString("name"));
-                    textViewAddress.setText(obj.getString("address"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    //Toast.makeText(MainActivity.this, result.getContents(), Toast.LENGTH_LONG).show();
-                    textViewResult.setText(result.getContents());
-                }
+                LUI.QRcodeCaptured = result.getContents();
+                Intent intent = new Intent(getApplicationContext(), WaitConfirmActivity.class);
+                startActivity(intent);
+
+//                try {
+//                    //data를 json으로 변환
+//                    JSONObject obj = new JSONObject(result.getContents());
+//                    textViewName.setText(obj.getString("name"));
+//                    textViewAddress.setText(obj.getString("address"));
+//                    Intent intent = new Intent(getApplicationContext(), QRActivity.class);
+//                    startActivity(intent);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                    //Toast.makeText(MainActivity.this, result.getContents(), Toast.LENGTH_LONG).show();
+//                    textViewResult.setText(result.getContents());
+//                }
             }
 
         } else {

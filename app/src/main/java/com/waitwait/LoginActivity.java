@@ -137,6 +137,8 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), SignUpActivity1.class);
         startActivity(intent);
     }
+
+
     public void onClickToQRActivity(View view){
         Intent intent = new Intent(getApplicationContext(), QRActivity.class);
         startActivity(intent);
