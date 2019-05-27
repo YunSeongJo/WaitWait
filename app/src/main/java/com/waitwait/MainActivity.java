@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 첫 화면 지정
         transaction.replace(R.id.frame_layout, homeFragment).commitAllowingStateLoss();
-        tv = findViewById(R.id.waitStatusTextView);
+        tv = findViewById(R.id.w);
 
     }
 
