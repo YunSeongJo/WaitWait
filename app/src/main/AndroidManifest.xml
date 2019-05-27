@@ -11,8 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.waitwait"
+            android:value="5c0a3ba396e02ad182df77675de7b1b3"/>
+        <activity android:name=".MapActivity"></activity>
+        <activity android:name=".QRActivity"></activity>
         <activity android:name=".WaitConfirmActivity"></activity>
-        <activity android:name=".QRActivity" />
         <activity android:name=".SignUpActivity2" />
         <activity android:name=".SignUpActivity1" />
         <activity android:name=".FindIdPwActivity" />
