@@ -82,6 +82,9 @@ public class SignUpActivity2 extends AppCompatActivity {
                             user.put("Email", email);
                             user.put("Name", name);
                             user.put("Phone", phone);
+                            user.put("WaitListRestaurantName", "none");
+                            user.put("WaitListRestaurantNumber", 0);
+                            user.put("WaitListRestaurantCode", "none");
 
 
                             db.collection("UserInformation").document(email)

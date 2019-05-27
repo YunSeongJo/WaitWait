@@ -2,9 +2,13 @@ package com.waitwait;
 
 public class LoginedUserInformation {
 
-    public static String email = "null";
+    public static String email;
+    public static String name;
+    public static String phone;
+
     public static String WaitingRestaurant = "none";
     public static int WaitingNumber = 0;
+    public static String WaitingRestaurantCode = "none";
 
     public static String QRcodeCaptured = "";
 

@@ -63,7 +63,7 @@ public class WaitConfirmActivity extends AppCompatActivity {
                     } else {
                         System.out.println("No such document");
                         alert.setTitle("Error");
-                        alert.setMessage("QR코드가 옳바르지 않습니다.");
+                        alert.setMessage("QR코드가 올바르지 않습니다.");
                         alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -140,6 +140,10 @@ public class WaitConfirmActivity extends AppCompatActivity {
                     System.out.println("get failed with ");
                 }
 
+                LoginedUserInformation.WaitingRestaurant = rn.getText().toString();
+                LoginedUserInformation.WaitingNumber = myNumberDouble;
+
+                //레스토랑 정보 변경
                 Map<String, Object> data = new HashMap<>();
                 data.put("Name", rn.getText());
                 data.put("WaitNumber", myNumberDouble);
@@ -151,6 +155,25 @@ public class WaitConfirmActivity extends AppCompatActivity {
                                 Toast.makeText(WaitConfirmActivity.this, "Push Success", Toast.LENGTH_SHORT).show();
                             }
                         });
+
+                //UserInformation의 대기 변경
+                Map<String, Object> informationData = new HashMap<>();
+                informationData.put("Email", LoginedUserInformation.email);
+                informationData.put("Name", LoginedUserInformation.name);
+                informationData.put("Phone", LoginedUserInformation.phone);
+                informationData.put("WaitListRestaurantName", LoginedUserInformation.WaitingRestaurant);
+                informationData.put("WaitListRestaurantNumber", LoginedUserInformation.WaitingNumber);
+                LoginedUserInformation.WaitingRestaurantCode = QRdata;
+                informationData.put("WaitListRestaurantCode", LoginedUserInformation.WaitingRestaurantCode);
+                db.collection("UserInformation").document(LoginedUserInformation.email)
+                        .set(informationData)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                //Do nothing
+                            }
+                        });
+
 
             }
         });

@@ -26,10 +26,14 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -38,6 +42,10 @@ public class HomeFragment extends Fragment {
 
     private FirebaseFirestore db;
     TextView tv;
+    LoginedUserInformation LUI;
+    TextView rtv;
+
+    int count;
 
     public HomeFragment() {
     }
@@ -49,10 +57,12 @@ public class HomeFragment extends Fragment {
         System.out.println("WatTheFuck");
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         tv = view.findViewById(R.id.waitStatusTextView);
+        rtv = view.findViewById(R.id.waitStatusRemainTextView);
 
         //--------------------------------
 
         db = FirebaseFirestore.getInstance();
+        LUI = new LoginedUserInformation();
 
 
 
@@ -63,7 +73,8 @@ public class HomeFragment extends Fragment {
                 while(true){
                     try{
                         System.out.println("Thread start");
-                        DocumentReference docRef = db.collection("UserInformation").document(LoginedUserInformation.email);
+                        System.out.println(LUI.getEmail());
+                        DocumentReference docRef = db.collection("UserInformation").document(LUI.getEmail());
                         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -71,16 +82,76 @@ public class HomeFragment extends Fragment {
                                     DocumentSnapshot document = task.getResult();
                                     if (document.exists()) {
                                         System.out.println("DocumentSnapshot data: " + document.getData());
-                                        tv.setText(document.getString("WaitListRestaurantName") + "에서 " + document.getDouble("WaitListRestaurantNumber") + "번으로 대기중");
+                                        if(document.getString("WaitListRestaurantName").equals("none")){
+                                            tv.setText("현재 대기 중인 식당이 없습니다.");
+                                            rtv.setText("");
+                                        }else{
+                                            double tempdouble = document.getDouble("WaitListRestaurantNumber");
+                                            int tempint = (int) tempdouble;
+                                            tv.setText(document.getString("WaitListRestaurantName") + "에서 " + tempint + "번으로 대기중");
+                                            db.collection("RestaurantList").document(LoginedUserInformation.WaitingRestaurantCode).collection("WaitList")
+                                                    .get()
+                                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                            if (task.isSuccessful()) {
+                                                                //내앞에 몇팀있는지 세기
+                                                                count = 0;
+                                                                db.collection("RestaurantList").document(LoginedUserInformation.WaitingRestaurantCode).collection("WaitList").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                                        if (task.isSuccessful()) {
+                                                                            List<String> list = new ArrayList<>();
+                                                                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                                                                list.add(document.getId());
+                                                                            }
+                                                                            System.out.println(list.toString());
+
+                                                                            List<Integer> intlist = new ArrayList<>();
+                                                                            for(int i=0; i<list.size(); i++){
+                                                                                intlist.add(Integer.parseInt(list.get(i)));
+                                                                            }
+
+                                                                            for(int i=0; i<list.size(); i++){
+                                                                                if(intlist.get(i) < LoginedUserInformation.WaitingNumber){
+                                                                                    count++;
+                                                                                }
+                                                                            }
+
+
+                                                                            if(count == 0){
+                                                                                rtv.setText("드디어 내 차례에요! 매장 앞으로 와주세요!");
+                                                                            }else{
+                                                                                rtv.setText("내 앞에 " + count + "팀이 있어요.");
+                                                                            }
+                                                                        } else {
+                                                                            System.out.println("error");
+                                                                        }
+                                                                    }
+                                                                });
+
+
+
+                                                            } else {
+                                                                System.out.println("Error Occured");
+                                                            }
+                                                        }
+                                                    });
+
+                                        }
                                     } else {
                                         System.out.println("No such document");
+                                        tv.setText("현재 대기 중인 식당이 없습니다.");
+                                        rtv.setText("");
                                     }
                                 } else {
                                     System.out.println("get failed with ");
+                                    tv.setText("현재 대기 중인 식당이 없습니다.");
+                                    rtv.setText("");
                                 }
                             }
                         });
-                        Thread.sleep(10000);
+                        Thread.sleep(5000);
                     } catch (InterruptedException e){
                         e.printStackTrace();
                     }

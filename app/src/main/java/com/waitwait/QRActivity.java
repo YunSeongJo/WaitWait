@@ -62,6 +62,7 @@ public class QRActivity extends AppCompatActivity {
                 LUI.QRcodeCaptured = result.getContents();
                 Intent intent = new Intent(getApplicationContext(), WaitConfirmActivity.class);
                 startActivity(intent);
+                finish();
 
 //                try {
 //                    //data를 json으로 변환

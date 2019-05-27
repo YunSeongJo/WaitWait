@@ -1,6 +1,7 @@
 package com.waitwait;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.regex.Pattern;
 
@@ -30,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     private String password = "";
 
     private TextView errorMsg;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +48,11 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.pwWord);
         errorMsg = findViewById(R.id.errorMessage);
 
+        db = FirebaseFirestore.getInstance();
+
     }
 
-    private void loginUser(String email, String password) {//로그인 버튼 눌렀을 때 실행하는 객체
+    private void loginUser(final String email, String password) {//로그인 버튼 눌렀을 때 실행하는 객체
         errorMsg.setText("로그인 중..");
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -54,6 +61,33 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // 로그인 성공
                             Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                            LoginedUserInformation.email = email;
+                            DocumentReference docRef = db.collection("UserInformation").document(email);
+
+                            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot document = task.getResult();
+                                        if (document.exists()) {
+                                            System.out.println("DocumentSnapshot data: " + document.getData());
+                                            LoginedUserInformation.name = document.getString("Name");
+                                            LoginedUserInformation.phone = document.getString("Phone");
+                                            LoginedUserInformation.WaitingRestaurant = document.getString("WaitListRestaurantName");
+                                            LoginedUserInformation.WaitingRestaurantCode = document.getString("WaitListRestaurantCode");
+                                            double tempNumber;
+                                            tempNumber = document.getDouble("WaitListRestaurantNumber");
+                                            LoginedUserInformation.WaitingNumber = (int) tempNumber;
+                                        } else {
+                                            System.out.println("No such document");
+
+                                        }
+                                    } else {
+                                        System.out.println("get failed with ");
+                                    }
+                                }
+                            });
+
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
                             finish();
