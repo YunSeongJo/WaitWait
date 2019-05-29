@@ -44,6 +44,7 @@ public class HomeFragment extends Fragment {
     TextView tv;
     LoginedUserInformation LUI;
     TextView rtv;
+    TextView tv2;
 
     int count;
 
@@ -58,6 +59,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         tv = view.findViewById(R.id.waitStatusTextView);
         rtv = view.findViewById(R.id.waitStatusRemainTextView);
+        tv2 = view.findViewById(R.id.waitStatusTextView2);
 
         //--------------------------------
 
@@ -83,12 +85,14 @@ public class HomeFragment extends Fragment {
                                     if (document.exists()) {
                                         System.out.println("DocumentSnapshot data: " + document.getData());
                                         if(document.getString("WaitListRestaurantName").equals("none")){
+                                            tv2.setText("");
                                             tv.setText("현재 대기 중인 식당이 없습니다.");
                                             rtv.setText("");
                                         }else{
                                             double tempdouble = document.getDouble("WaitListRestaurantNumber");
                                             int tempint = (int) tempdouble;
-                                            tv.setText(document.getString("WaitListRestaurantName") + "에서 " + tempint + "번으로 대기중");
+                                            tv2.setText(document.getString("WaitListRestaurantName"));
+                                            tv.setText("대기번호 : " + tempint);
                                             db.collection("RestaurantList").document(LoginedUserInformation.WaitingRestaurantCode).collection("WaitList")
                                                     .get()
                                                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -141,11 +145,13 @@ public class HomeFragment extends Fragment {
                                         }
                                     } else {
                                         System.out.println("No such document");
+                                        tv2.setText("");
                                         tv.setText("현재 대기 중인 식당이 없습니다.");
                                         rtv.setText("");
                                     }
                                 } else {
                                     System.out.println("get failed with ");
+                                    tv2.setText("");
                                     tv.setText("현재 대기 중인 식당이 없습니다.");
                                     rtv.setText("");
                                 }
