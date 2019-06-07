@@ -3,20 +3,24 @@
     package="com.waitwait">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DistanceActivity"></activity>
+        <activity android:name=".MapActivity" />
+
         <meta-data
-            android:name="com.waitwait"
-            android:value="5c0a3ba396e02ad182df77675de7b1b3"/>
-        <activity android:name=".MapActivity"></activity>
-        <activity android:name=".QRActivity"></activity>
-        <activity android:name=".WaitConfirmActivity"></activity>
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCMMNjdbjhMwbYEzoTIZU5g6k9G9MnOP08" />
+
+        <activity android:name=".QRActivity" />
+        <activity android:name=".WaitConfirmActivity" />
         <activity android:name=".SignUpActivity2" />
         <activity android:name=".SignUpActivity1" />
         <activity android:name=".FindIdPwActivity" />

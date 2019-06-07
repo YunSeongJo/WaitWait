@@ -178,6 +178,10 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MapActivity.class);
         startActivity(intent);
     }
+   public void onClickToDistanceActivity(View view){
+       Intent intent = new Intent(getApplicationContext(), DistanceActivity.class);
+       startActivity(intent);
+   }
 
 
 
