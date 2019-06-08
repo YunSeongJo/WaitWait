@@ -182,6 +182,11 @@ public class LoginActivity extends AppCompatActivity {
        Intent intent = new Intent(getApplicationContext(), DistanceActivity.class);
        startActivity(intent);
    }
+   public void onClickToQRPracticeActivity(View view)
+   {
+       Intent intent = new Intent(getApplicationContext(), QR2Activity.class);
+       startActivity(intent);
+   }
 
 
 
