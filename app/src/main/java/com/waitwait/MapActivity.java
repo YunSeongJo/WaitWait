@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -63,6 +64,10 @@ PlacesListener{
     private GoogleMap mGoogleMap = null;
     private Marker currentMarker = null;
 
+    private Geocoder geocoder;
+    private Button button10;
+    private EditText editText;
+
     private static final String TAG = "googlemap_example";
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 2002;
@@ -88,8 +93,13 @@ PlacesListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        editText = (EditText) findViewById(R.id.editText);
+        button10=(Button)findViewById(R.id.button10);
+
         Log.d(TAG, "onCreate");
         mActivity = this;
+
 
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -106,13 +116,58 @@ PlacesListener{
         previous_marker = new ArrayList<Marker>();
 
         Button button = (Button)findViewById(R.id.button);
+        button10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str=editText.getText().toString();
+                List<Address> addressList = null;
+                try {
+                    // editText에 입력한 텍스트(주소, 지역, 장소 등)을 지오 코딩을 이용해 변환
+                    addressList = geocoder.getFromLocationName(
+                            str, // 주소
+                            10); // 최대 검색 결과 개수
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                System.out.println(addressList.get(0).toString());
+                // 콤마를 기준으로 split
+                String []splitStr = addressList.get(0).toString().split(",");
+                String address = splitStr[0].substring(splitStr[0].indexOf("\"") + 1,splitStr[0].length() - 2); // 주소
+                System.out.println(address);
+
+                String latitude = splitStr[10].substring(splitStr[10].indexOf("=") + 1); // 위도
+                String longitude = splitStr[12].substring(splitStr[12].indexOf("=") + 1); // 경도
+                System.out.println(latitude);
+                System.out.println(longitude);
+
+                // 좌표(위도, 경도) 생성
+                LatLng point = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
+                // 마커 생성
+                MarkerOptions mOptions2 = new MarkerOptions();
+                mOptions2.title("search result");
+                mOptions2.snippet(address);
+                mOptions2.position(point);
+                // 마커 추가
+                mGoogleMap.addMarker(mOptions2);
+
+                // 해당 좌표로 화면 줌
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point,15));
+            }
+
+        });
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPlaceInformation(currentPosition);
             }
-        });
+            });
+
     }
+
+
 
     @Override
     public void onResume() {
@@ -176,6 +231,7 @@ PlacesListener{
         Log.d(TAG, "onMapReady :");
 
         mGoogleMap = googleMap;
+        geocoder = new Geocoder(this);
 
 
         //런타임 퍼미션 요청 대화상자나 GPS 활성 요청 대화상자 보이기전에
@@ -198,10 +254,14 @@ PlacesListener{
         mGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-
                 Log.d( TAG, "onMapClick :");
             }
+
+
         });
+
+
+
 
         mGoogleMap.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
 
@@ -227,6 +287,7 @@ PlacesListener{
 
             }
         });
+
     }
 
 
@@ -602,13 +663,7 @@ PlacesListener{
             public void run() {
 
                 for (noman.googleplaces.Place place : places) {
-
-
-                    LatLng latLng
-
-                            = new LatLng(place.getLatitude()
-
-                            , place.getLongitude());
+                    LatLng latLng = new LatLng(place.getLatitude(), place.getLongitude());
 
 
                     String markerSnippet = getCurrentAddress(latLng);
@@ -665,6 +720,7 @@ PlacesListener{
                 .build()
                 .execute();
     }
+
 
 
 }
