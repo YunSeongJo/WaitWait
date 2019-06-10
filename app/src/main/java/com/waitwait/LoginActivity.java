@@ -3,6 +3,7 @@ package com.waitwait;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -186,6 +187,7 @@ public class LoginActivity extends AppCompatActivity {
    {
        Intent intent = new Intent(getApplicationContext(), QR2Activity.class);
        startActivity(intent);
+
    }
 
 

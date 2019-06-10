@@ -12,6 +12,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -67,6 +68,7 @@ PlacesListener{
     private Geocoder geocoder;
     private Button button10;
     private EditText editText;
+
 
     private static final String TAG = "googlemap_example";
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
@@ -158,12 +160,13 @@ PlacesListener{
 
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPlaceInformation(currentPosition);
-            }
-            });
+      //  button.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+          //  public void onClick(View v) {
+            //    showPlaceInformation(currentPosition);
+           // }
+           // });
+
 
     }
 
@@ -720,7 +723,13 @@ PlacesListener{
                 .build()
                 .execute();
     }
+    public void onClickToSearchActivity(View view)
+    {
+        Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+        startActivity(intent);
 
+
+    }
 
 
 }
